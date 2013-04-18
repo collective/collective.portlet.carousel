@@ -14,9 +14,11 @@ setup(name='collective.portlet.carousel',
       url='',
       license='',
       packages=find_packages(exclude=['ez_setup', 'examples', 'tests']),
+      namespace_packages = ['collective', 'collective.portlet'],
       include_package_data=True,
       zip_safe=True,
       install_requires=[
+          'distribute',
           'collective.panels',
           # -*- Extra requirements: -*-
       ],

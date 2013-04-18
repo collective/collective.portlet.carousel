@@ -3,7 +3,7 @@ import sys, os
 
 version = '0.1'
 
-setup(name='collective.panels.carousel',
+setup(name='collective.portlet.carousel',
       version=version,
       description="Carousel for collective.panels",
       long_description="""Carousel for collective.panels""",

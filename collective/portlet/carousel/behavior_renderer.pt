@@ -7,7 +7,7 @@
     tal:attributes="style string:filter: alpha(opacity = ${filter});;
                                  opacity: ${opacity};;
                                  ${show}">
-  <a tal:attributes="href item/absolute_url">
+  <a tal:attributes="href item/carousel_link/to_object/absolute_url | item/absolute_url">
     <img tal:attributes="src string:${item/absolute_url}/@@images/carousel_background"
          alt="Carousel"
          class="carouselPortletItemImg"
@@ -24,7 +24,7 @@
 </metal:block>
 <metal:block define-macro="carouselTitle">
   <li tal:attributes="class python:repeat['item'].index == 0 and 'current' or ''">
-    <a tal:attributes="href item/absolute_url">
+    <a tal:attributes="href item/carousel_link/to_object/absolute_url | item/absolute_url">
       <span tal:content="item/carousel_heading | item/Title" />
     </a>
   </li>

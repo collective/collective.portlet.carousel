@@ -8,5 +8,9 @@ from zope.interface import implements
 class CarouselPortletAssignment(base.Assignment):
     implements(ICarouselPortlet)
 
-    automatic_rotation = True
     title = ''
+    collection_reference = None
+    references = []
+    limit = 5
+    automatic_rotation = True
+

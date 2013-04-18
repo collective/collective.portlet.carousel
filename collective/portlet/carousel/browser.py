@@ -7,7 +7,6 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 from plone.app.portlets.portlets import base
 from plone.app.portlets.browser import z3cformhelper
-from plone.memoize import ram
 
 from z3c.form import field
 
@@ -20,7 +19,8 @@ class CarouselPortletRenderer(base.Renderer):
 
     @property
     def available(self):
-        return True
+        return self.context.data.collection_reference or \
+            len(self.context.data.references) > 0
 
     @property
     def rotate(self):
@@ -30,8 +30,7 @@ class CarouselPortletRenderer(base.Renderer):
         items = []
 
         collection = None
-        if hasattr(self.context.data, 'collection_reference') and \
-                self.context.data.collection_reference:
+        if self.context.data.collection_reference:
             collection = self.context.data.collection_reference.to_object
 
         if collection:

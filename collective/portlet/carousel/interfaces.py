@@ -24,6 +24,7 @@ class ICarouselItemBehavior(form.Schema, ICarouselItem):
             'carousel_heading',
             'carousel_description',
             'carousel_background',
+            'carousel_link',
         ),
     )
 
@@ -47,6 +48,15 @@ class ICarouselItemBehavior(form.Schema, ICarouselItem):
                       u"for pages below this section"),
         required=False
     )
+
+    carousel_link = RelationChoice(
+        title=_(u"Carousel link"),
+        description=_(u"If selected this link will be used from the carousel "
+                      u"item, otherwise a link to this object is used."),
+        required=False,
+        source=ObjPathSourceBinder(),
+    )
+
 
 alsoProvides(ICarouselItemBehavior, form.IFormFieldProvider)
 

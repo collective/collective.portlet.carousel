@@ -45,14 +45,14 @@
     <browser:page
         name="carousel-renderer"
         for=".interfaces.ICarouselItemBehavior"
-        template="behavior_renderer.pt"
+        template="renderer_behavior.pt"
         permission="zope.Public"
         />
 
     <browser:page
         name="carousel-renderer"
         for=".interfaces.ICarouselItem"
-        template="dublincore_renderer.pt"
+        template="renderer_dublincore.pt"
         permission="zope.Public"
         />
 

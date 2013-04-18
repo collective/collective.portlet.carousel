@@ -97,3 +97,11 @@ class ICarouselPortlet(IPortletDataProvider):
         required=False,
         default=True,
     )
+
+    omit_border = schema.Bool(
+        title=_(u"Omit portlet border"),
+        description=_(u"Tick this box if you want to render the text above "
+                      u"without the standard header, border or footer."),
+        required=False,
+        default=False
+    )

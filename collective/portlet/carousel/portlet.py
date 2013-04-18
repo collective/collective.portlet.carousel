@@ -13,4 +13,4 @@ class CarouselPortletAssignment(base.Assignment):
     references = []
     limit = 5
     automatic_rotation = True
-
+    omit_border = False

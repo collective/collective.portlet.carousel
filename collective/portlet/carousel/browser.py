@@ -14,6 +14,7 @@ from z3c.form import field
 class CarouselPortletRenderer(base.Renderer):
     render = ViewPageTemplateFile('portlet.pt')
 
+    @property
     def title(self):
         return self.context.data.title
 
@@ -23,10 +24,14 @@ class CarouselPortletRenderer(base.Renderer):
             len(self.context.data.references) > 0
 
     @property
+    def omit_border(self):
+        return self.context.data.omit_border
+
+    @property
     def rotate(self):
         return self.context.data.automatic_rotation
 
-    def getItems(self):
+    def items(self):
         items = []
 
         collection = None

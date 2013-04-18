@@ -2,7 +2,7 @@
       xmlns:tal="http://xml.zope.org/namespaces/tal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       tal:omit-tag=""
-      tal:define="items view/getItems">
+      tal:define="items view/items">
   <div class="portletCarousel">
 
     <script type="text/javascript">
@@ -29,8 +29,8 @@
         });
     </script>
 
-    <dl class="portlet" i18n:domain="plone">
-      <dt class="portletHeader">
+    <dl class="portlet">
+      <dt class="portletHeader" tal:condition="not:view/omit_border">
         <span class="portletTopLeft"></span>
         <span class="tile" tal:content="view/title" />
         <span class="portletTopRight"></span>

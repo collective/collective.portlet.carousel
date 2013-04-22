@@ -25,6 +25,7 @@ class ICarouselItemBehavior(form.Schema, ICarouselItem):
             'carousel_description',
             'carousel_background',
             'carousel_link',
+            'carousel_caption',
         ),
     )
 
@@ -57,6 +58,11 @@ class ICarouselItemBehavior(form.Schema, ICarouselItem):
         source=ObjPathSourceBinder(),
     )
 
+    carousel_caption = schema.Text(
+        title=_(u"Carousel caption"),
+        description=u'',
+        required=False
+    )
 
 alsoProvides(ICarouselItemBehavior, form.IFormFieldProvider)
 

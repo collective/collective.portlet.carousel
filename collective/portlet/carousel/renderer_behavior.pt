@@ -18,6 +18,8 @@
             />
       <span class="carouselPortletItemDescription"
             tal:content="item/carousel_description | item/Description"/>
+      <span class="carouselPortletItemCaption"
+            tal:content="item/carousel_caption | nothing"/>
     </div>
   </a>
 </dd>

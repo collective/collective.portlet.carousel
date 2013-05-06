@@ -45,15 +45,14 @@ class ICarouselItemBehavior(form.Schema, ICarouselItem):
 
     carousel_background = NamedBlobImage(
         title=_(u"Carousel background"),
-        description=_(u"This image is displayed in the top of the page "
-                      u"for pages below this section"),
+        description=_(u"This image is used as background in the carousel"),
         required=False
     )
 
     carousel_link = RelationChoice(
         title=_(u"Carousel link"),
         description=_(u"If selected this link will be used from the carousel "
-                      u"item, otherwise a link to this object is used."),
+                      u"item, otherwise a link to this object is used"),
         required=False,
         source=ObjPathSourceBinder(),
     )
@@ -107,7 +106,7 @@ class ICarouselPortlet(IPortletDataProvider):
     omit_border = schema.Bool(
         title=_(u"Omit portlet border"),
         description=_(u"Tick this box if you want to render the text above "
-                      u"without the standard header, border or footer."),
+                      u"without the standard header, border or footer"),
         required=False,
         default=False
     )

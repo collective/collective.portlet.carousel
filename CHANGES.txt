@@ -1,0 +1,8 @@
+Changelog
+=========
+
+ (unreleased)
+------------------
+
+- work with plone:master p.a.portlets  
+  [tmog]

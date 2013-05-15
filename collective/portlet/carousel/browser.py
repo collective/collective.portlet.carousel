@@ -56,7 +56,7 @@ class CarouselPortletAddForm(z3cformhelper.AddForm):
     fields = field.Fields(ICarouselPortlet)
     label = _(u"Add carousel portlet")
 
-    def create_assignment(self, data):
+    def create(self, data):
         return CarouselPortletAssignment(**data)
 
 

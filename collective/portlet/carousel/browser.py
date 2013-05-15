@@ -46,6 +46,9 @@ class CarouselPortletRenderer(base.Renderer):
             for reference in references:
                 items.append(reference.to_object)
 
+        if hasattr(self.context.data, 'limit') and self.context.data.limit > 0:
+            return items[:self.context.data.limit]
+
         return items
 
 

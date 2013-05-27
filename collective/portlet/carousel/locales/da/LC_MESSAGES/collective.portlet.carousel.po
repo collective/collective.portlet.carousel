@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2013-05-01 07:45+0000\n"
+"POT-Creation-Date: 2013-05-15 11:05+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,9 +14,9 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
-#: collective.portlet.carousel/collective/portlet/carousel/browser.py:54
+#: collective.portlet.carousel/collective/portlet/carousel/browser.py:57
 msgid "Add carousel portlet"
-msgstr "Tilføj karouselportlet"
+msgstr "Tilføj karruselportlet"
 
 #: collective.portlet.carousel/collective/portlet/carousel/interfaces.py:101
 msgid "Automatic rotation"
@@ -24,43 +24,43 @@ msgstr "Automatisk rotation"
 
 #: collective.portlet.carousel/collective/portlet/carousel/profile/portlets.xml
 msgid "Carousel Portlet"
-msgstr "Karouselportlet"
+msgstr "Karruselportlet"
 
 #: collective.portlet.carousel/collective/portlet/carousel/interfaces.py:47
 msgid "Carousel background"
-msgstr "Karousel baggrund"
+msgstr "Karrusel baggrund"
 
 #: collective.portlet.carousel/collective/portlet/carousel/interfaces.py:61
 msgid "Carousel caption"
-msgstr "Karousel undertekst"
+msgstr "Karrusel undertekst"
 
 #: collective.portlet.carousel/collective/portlet/carousel/interfaces.py:40
 msgid "Carousel description"
-msgstr "Karousel beskrivelse"
+msgstr "Karrusel beskrivelse"
 
 #: collective.portlet.carousel/collective/portlet/carousel/interfaces.py:33
 msgid "Carousel heading"
-msgstr "Karousel overskrift"
+msgstr "Karrusel overskrift"
 
 #: collective.portlet.carousel/collective/portlet/carousel/interfaces.py:53
 msgid "Carousel link"
-msgstr "Karousel-link"
+msgstr "Karrusel-link"
 
 #: collective.portlet.carousel/collective/portlet/carousel/interfaces.py:75
 msgid "Collection reference"
 msgstr "Reference til dynamisk liste"
 
-#: collective.portlet.carousel/collective/portlet/carousel/browser.py:62
+#: collective.portlet.carousel/collective/portlet/carousel/browser.py:65
 msgid "Edit carousel portlet"
-msgstr "Rediger karouselportlet"
+msgstr "Rediger karruselportlet"
 
 #: collective.portlet.carousel/collective/portlet/carousel/interfaces.py:84
 msgid "If no collection is selected the following elements will be displayed in the carousel"
-msgstr "Hvis ingen dynamisk liste er valgt vil følgende elementer blive vist i karouselen"
+msgstr "Hvis ingen dynamisk liste er valgt vil følgende elementer blive vist i karruselen"
 
 #: collective.portlet.carousel/collective/portlet/carousel/interfaces.py:54
 msgid "If selected this link will be used from the carousel item, otherwise a link to this object is used"
-msgstr "Vælg det objekt der skal linkes til fra karouselen, hvis intet er valgt, benyttes det aktuelle objekt"
+msgstr "Vælg det objekt der skal linkes til fra karruselen, hvis intet er valgt, benyttes det aktuelle objekt"
 
 #: collective.portlet.carousel/collective/portlet/carousel/interfaces.py:41
 msgid "If this description is not specified the description of the object will be used as description"
@@ -72,7 +72,7 @@ msgstr "Indtast en titel. Hvis ingen titel indtastes benyttes objektets titelfel
 
 #: collective.portlet.carousel/collective/portlet/carousel/interfaces.py:96
 msgid "Number of elements to be shown in the carousel"
-msgstr "Antal elementer der skal vises i karouselen"
+msgstr "Antal elementer der skal vises i karruselen"
 
 #: collective.portlet.carousel/collective/portlet/carousel/interfaces.py:107
 msgid "Omit portlet border"
@@ -88,11 +88,11 @@ msgstr "Referencer til elementer"
 
 #: collective.portlet.carousel/collective/portlet/carousel/interfaces.py:76
 msgid "Select the collection that should be used to fetch the elements that are shown in the carousel"
-msgstr "Vælg den dynamiske liste der skal bruges til at hente elementer der skal vises i karouselen."
+msgstr "Vælg den dynamiske liste der skal bruges til at hente elementer der skal vises i karruselen."
 
 #: collective.portlet.carousel/collective/portlet/carousel/interfaces.py:48
 msgid "This image is used as background in the carousel"
-msgstr "Dette billede benyttes som baggrund i karouselen"
+msgstr "Dette billede benyttes som baggrund i karruselen"
 
 #: collective.portlet.carousel/collective/portlet/carousel/interfaces.py:108
 msgid "Tick this box if you want to render the text above without the standard header, border or footer"
@@ -101,5 +101,5 @@ msgstr "Vælg denne boks hvis du ikke ønsker overskrift for denne portlet"
 #. Default: "Carousel"
 #: collective.portlet.carousel/collective/portlet/carousel/interfaces.py:22
 msgid "fieldset_carousel"
-msgstr "Karousel"
+msgstr "Karrusel"
 

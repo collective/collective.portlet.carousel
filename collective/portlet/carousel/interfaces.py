@@ -24,6 +24,7 @@ class ICarouselItemBehavior(form.Schema, ICarouselItem):
             'carousel_heading',
             'carousel_description',
             'carousel_background',
+            'carousel_background_link',
             'carousel_link',
             'carousel_caption',
         ),
@@ -47,6 +48,13 @@ class ICarouselItemBehavior(form.Schema, ICarouselItem):
         title=_(u"Carousel background"),
         description=_(u"This image is used as background in the carousel"),
         required=False
+    )
+
+    carousel_background_link = RelationChoice(
+        title=_(u"Carousel background link"),
+        description=_(u"If selected this link will be used from background in the carousel"),
+        required=False,
+        source=ObjPathSourceBinder(portal_type=['Image']),
     )
 
     carousel_link = RelationChoice(

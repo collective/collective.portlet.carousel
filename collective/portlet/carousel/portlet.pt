@@ -35,6 +35,7 @@
         <span class="tile" tal:content="view/title" />
         <span class="portletTopRight"></span>
       </dt>
+      <dt tal:condition="view/omit_border"></dt>
 
       <tal:block repeat="item items">
          <metal:block use-macro="item/@@carousel-renderer/macros/carouselItem"/>

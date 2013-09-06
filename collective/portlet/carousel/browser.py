@@ -20,8 +20,8 @@ class CarouselPortletRenderer(base.Renderer):
 
     @property
     def available(self):
-        return self.context.data.collection_reference or \
-            len(self.context.data.references) > 0
+        return self.context.data and (self.context.data.collection_reference or \
+            len(self.context.data.references) > 0)
 
     @property
     def omit_border(self):

@@ -16,38 +16,38 @@ class CarouselPortletRenderer(base.Renderer):
 
     @property
     def title(self):
-        return self.context.data.title
+        return self.data.title
 
     @property
     def available(self):
-        return self.context.data and (self.context.data.collection_reference or \
-            len(self.context.data.references) > 0)
+        return self.data.collection_reference or \
+            len(self.data.references) > 0
 
     @property
     def omit_border(self):
-        return self.context.data.omit_border
+        return self.data.omit_border
 
     @property
     def rotate(self):
-        return self.context.data.automatic_rotation
+        return self.data.automatic_rotation
 
     def items(self):
         items = []
 
         collection = None
-        if self.context.data.collection_reference:
-            collection = self.context.data.collection_reference.to_object
+        if self.data.collection_reference:
+            collection = self.data.collection_reference.to_object
 
         if collection:
             for brain in collection.results():
                 items.append(brain.getObject())
         else:
-            references = self.context.data.references
+            references = self.data.references
             for reference in references:
                 items.append(reference.to_object)
 
-        if hasattr(self.context.data, 'limit') and self.context.data.limit > 0:
-            return items[:self.context.data.limit]
+        if hasattr(self.data, 'limit') and self.data.limit > 0:
+            return items[:self.data.limit]
 
         return items
 

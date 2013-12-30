@@ -1,5 +1,5 @@
 collective.portlet.carousel
-==========================
+===========================
 
 A portlet to be used within panels (see collective.panels) for creating carousels. 
 
@@ -24,7 +24,7 @@ TODO
 * Better documentation. 
 
 Authors
-------
+-------
 
 * Bo Simonsen <bo@headnet.dk>
 * Thomas Clement Mogensen <thomas@headnet.dk>

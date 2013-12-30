@@ -1,13 +1,19 @@
 from setuptools import setup, find_packages
 import sys, os
 
-version = '0.1'
+def read(*pathnames):
+    return open(os.path.join(os.path.dirname(__file__), *pathnames)).read()
+
+version = '1.0'
 
 setup(name='collective.portlet.carousel',
       version=version,
       description="Carousel for collective.panels",
-      long_description="""Carousel for collective.panels""",
-      classifiers=[], # Get strings from http://pypi.python.org/pypi?%3Aaction=list_classifiers
+      long_description='\n'.join([
+          read('README.rst'),
+          read('CHANGES.rst'),
+      ]),
+      classifiers=[],
       keywords='carousel panels',
       author='Bo Simonsen',
       author_email='bo@headnet.dk',
@@ -20,10 +26,11 @@ setup(name='collective.portlet.carousel',
       install_requires=[
           'distribute',
           'collective.panels',
+          'plone.app.portlets',
           # -*- Extra requirements: -*-
       ],
       entry_points="""
       [z3c.autoinclude.plugin]
       target = plone
       """,
-      )
+)

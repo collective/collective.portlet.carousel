@@ -1,6 +1,15 @@
 Changelog
 =========
 
+1.1 (UNRELEASED)
+----------------
+
+Fixes:
+
+- add BBB for ATTopic
+  [tmog]
+
+
 1.0 (30-12-2013)
 ----------------
 

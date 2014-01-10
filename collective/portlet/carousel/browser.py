@@ -39,7 +39,9 @@ class CarouselPortletRenderer(base.Renderer):
             collection = self.data.collection_reference.to_object
 
         if collection:
-            for brain in collection.results():
+            resf = hasattr(collection, 'results') and \
+                collection.results or collection.queryCatalog
+            for brain in resf():
                 items.append(brain.getObject())
         else:
             references = self.data.references

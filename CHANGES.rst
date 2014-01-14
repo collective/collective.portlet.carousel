@@ -6,6 +6,10 @@ Changelog
 
 Fixes:
 
+- only do rotation if we have more
+  than one item
+  [tmog]
+
 - allow picking old style Topics
   [tmog]
 

@@ -7,6 +7,7 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 from plone.app.portlets.portlets import base
 from plone.app.portlets.browser import z3cformhelper
+from plone.memoize.view import memoize
 
 from z3c.form import field
 
@@ -29,8 +30,10 @@ class CarouselPortletRenderer(base.Renderer):
 
     @property
     def rotate(self):
-        return self.data.automatic_rotation
+        return self.data.automatic_rotation and \
+            len(self.items()) > 1
 
+    @memoize
     def items(self):
         items = []
 

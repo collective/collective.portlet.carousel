@@ -6,6 +6,9 @@ Changelog
 
 Fixes:
 
+- allow picking old style Topics
+  [tmog]
+
 - add BBB for ATTopic
   [tmog]
 

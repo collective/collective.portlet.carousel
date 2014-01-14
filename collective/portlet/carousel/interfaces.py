@@ -84,7 +84,8 @@ class ICarouselPortlet(IPortletDataProvider):
         description=_(u"Select the collection that should be used to fetch "
                       u"the elements that are shown in the carousel"),
         required=False,
-        source=ObjPathSourceBinder(portal_type=['Collection']),
+        source=ObjPathSourceBinder(portal_type=['Collection',
+                                                'Topic']),
     )
 
     references = RelationList(

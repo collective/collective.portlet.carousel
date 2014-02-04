@@ -14,3 +14,4 @@ class CarouselPortletAssignment(base.Assignment):
     limit = 5
     automatic_rotation = True
     omit_border = False
+    timeout = 8

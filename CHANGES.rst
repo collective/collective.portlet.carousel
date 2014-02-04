@@ -4,6 +4,11 @@ Changelog
 1.1 (UNRELEASED)
 ----------------
 
+Features:
+
+- add option to set timeout in portlet.
+  [tmog]
+
 Fixes:
 
 - only do rotation if we have more

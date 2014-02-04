@@ -52,7 +52,8 @@ class ICarouselItemBehavior(form.Schema, ICarouselItem):
 
     carousel_background_link = RelationChoice(
         title=_(u"Carousel background link"),
-        description=_(u"If selected this link will be used from background in the carousel"),
+        description=_(u"If selected this link will be used "
+                      u"from background in the carousel"),
         required=False,
         source=ObjPathSourceBinder(portal_type=['Image']),
     )
@@ -103,6 +104,12 @@ class ICarouselPortlet(IPortletDataProvider):
 
     limit = schema.Int(
         title=_(u"Number of elements to be shown in the carousel"),
+        required=True,
+    )
+
+    timeout = schema.Int(
+        title=_(u"Rotation speed"),
+        description=_(u"How long to display each banner (in seconds)."),
         required=True,
     )
 

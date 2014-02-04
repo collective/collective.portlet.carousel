@@ -66,6 +66,13 @@ class ICarouselItemBehavior(form.Schema, ICarouselItem):
         source=ObjPathSourceBinder(),
     )
 
+    carousel_extlink = schema.URI(
+        title=_(u"Carousel external link"),
+        description=_(u"Entering a manual link here will override  "
+                      u"any selection in the link field above."),
+        required=False
+    )
+
     carousel_caption = schema.Text(
         title=_(u"Carousel caption"),
         description=u'',

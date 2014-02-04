@@ -15,3 +15,4 @@ class CarouselPortletAssignment(base.Assignment):
     automatic_rotation = True
     omit_border = False
     timeout = 8
+    carousel_extlink = ''

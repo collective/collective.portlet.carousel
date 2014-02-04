@@ -3,11 +3,15 @@
     tal:define="is_first python: repeat['item'].index == 0;
                 opacity python: is_first and '1' or '0';
                 filter python: is_first and '100' or '0';
-                show python: is_first and 'display: block' or 'display: none'"
+                show python: is_first and 'display: block' or 'display: none';
+		obj_link item/carousel_link/to_object/absolute_url | nothing;
+		ext_link item/carousel_extlink | nothing;
+		item_link item/absolute_url;
+		link python: ext_link or obj_link or item_link"
     tal:attributes="style string:filter: alpha(opacity = ${filter});;
                                  opacity: ${opacity};;
                                  ${show}">
-  <a tal:attributes="href item/carousel_link/to_object/absolute_url | item/absolute_url">
+  <a tal:attributes="href link">
     <img tal:attributes="src string:${item/carousel_background_link/to_object/absolute_url}/@@images/image"
          tal:condition="item/carousel_background_link|nothing"
          alt="Carousel"
@@ -30,9 +34,13 @@
   </a>
 </dd>
 </metal:block>
-<metal:block define-macro="carouselTitle">
+<metal:block define-macro="carouselTitle"
+	     tal:define="obj_link item/carousel_link/to_object/absolute_url | nothing;
+			 ext_link item/carousel_extlink | nothing;
+			 item_link item/absolute_url;
+			 link python: ext_link or obj_link or item_link">
   <li tal:attributes="class python:repeat['item'].index == 0 and 'current' or ''">
-    <a tal:attributes="href item/carousel_link/to_object/absolute_url | item/absolute_url">
+    <a tal:attributes="href link">
       <span tal:content="item/carousel_heading | item/Title" />
     </a>
   </li>

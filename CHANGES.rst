@@ -6,6 +6,10 @@ Changelog
 
 Features:
 
+- add option to specify an external uri in portlet.
+  External link will override reference.
+  [tmog]
+
 - add option to set timeout in portlet.
   [tmog]
 

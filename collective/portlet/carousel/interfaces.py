@@ -26,6 +26,7 @@ class ICarouselItemBehavior(form.Schema, ICarouselItem):
             'carousel_background',
             'carousel_background_link',
             'carousel_link',
+            'carousel_extlink',
             'carousel_caption',
         ),
     )

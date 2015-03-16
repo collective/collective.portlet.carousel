@@ -24,7 +24,7 @@ setup(name='collective.portlet.carousel',
       include_package_data=True,
       zip_safe=True,
       install_requires=[
-          'distribute',
+          'setuptools',
           'collective.panels',
           'plone.app.portlets',
           # -*- Extra requirements: -*-

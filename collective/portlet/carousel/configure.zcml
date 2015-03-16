@@ -1,6 +1,6 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
-    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
     xmlns:i18n="http://namespaces.zope.org/i18n"
     xmlns:plone="http://namespaces.plone.org/plone"
     xmlns:browser="http://namespaces.zope.org/browser"
@@ -8,11 +8,6 @@
     i18n_domain="collective.portlet.carousel">
 
     <include package="plone.behavior" file="meta.zcml" />
-
-    <five:registerPackage
-        package="."
-        initialize=".initialize"
-        />
 
     <includeDependencies
         package="."
@@ -66,5 +61,24 @@
         permission="zope.Public"
         />
 
+    <adapter
+        factory=".widgets.CarouselBackgroundLinkWidget"
+        zcml:condition="installed plone.app.widgets"
+        />
+
+    <adapter
+        factory=".widgets.CarouselLinkWidget"
+        zcml:condition="installed plone.app.widgets"
+        />
+
+    <adapter
+        factory=".widgets.CarouselCollectionReferenceWidget"
+        zcml:condition="installed plone.app.widgets"
+        />
+
+    <adapter
+        factory=".widgets.CarouselReferencesWidget"
+        zcml:condition="installed plone.app.widgets"
+        />
 
 </configure>

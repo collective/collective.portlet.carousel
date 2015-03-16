@@ -25,6 +25,9 @@ Fixes:
 - add BBB for ATTopic
   [tmog]
 
+- add Finnish localization
+  [datakurre]
+
 
 1.0 (30-12-2013)
 ----------------

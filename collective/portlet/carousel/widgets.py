@@ -16,6 +16,11 @@ from zope.interface import implementer
 def CarouselBackgroundLinkWidget(field, request):
     widget = FieldWidget(field, RelatedItemsWidget(request))
     widget.vocabulary = 'plone.app.vocabularies.Catalog'
+    widget.pattern_options = widget.pattern_options.copy()
+    widget.pattern_options.update({
+        'selectableTypes': ['Image'],
+        'maximumSelectionSize': 1
+    })
     return widget
 
 
@@ -25,8 +30,11 @@ def CarouselBackgroundLinkWidget(field, request):
 def CarouselLinkWidget(field, request):
     widget = FieldWidget(field, RelatedItemsWidget(request))
     widget.vocabulary = 'plone.app.vocabularies.Catalog'
-    widget.pattern_options.setdefault('selectableTypes', ['Image'])
-    widget.pattern_options.setdefault('maximumSelectionSize', 1)
+    widget.pattern_options = widget.pattern_options.copy()
+    widget.pattern_options.update({
+        'selectableTypes': None,
+        'maximumSelectionSize': 1
+    })
     return widget
 
 
@@ -36,9 +44,11 @@ def CarouselLinkWidget(field, request):
 def CarouselCollectionReferenceWidget(field, request):
     widget = FieldWidget(field, RelatedItemsWidget(request))
     widget.vocabulary = 'plone.app.vocabularies.Catalog'
-    widget.pattern_options.setdefault('selectableTypes',
-                                      ['Collection', 'Topic'])
-    widget.pattern_options.setdefault('maximumSelectionSize', 1)
+    widget.pattern_options = widget.pattern_options.copy()
+    widget.pattern_options.update({
+        'selectableTypes': ['Collection', 'Topic'],
+        'maximumSelectionSize': 1
+    })
     return widget
 
 
@@ -48,4 +58,9 @@ def CarouselCollectionReferenceWidget(field, request):
 def CarouselReferencesWidget(field, request):
     widget = FieldWidget(field, RelatedItemsWidget(request))
     widget.vocabulary = 'plone.app.vocabularies.Catalog'
+    widget.pattern_options = widget.pattern_options.copy()
+    widget.pattern_options.update({
+        'selectableTypes': None,
+        'maximumSelectionSize': None
+    })
     return widget

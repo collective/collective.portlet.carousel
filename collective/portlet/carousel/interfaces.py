@@ -1,7 +1,8 @@
 from i18n import MessageFactory as _
 
-from plone.directives import form
-from plone.formwidget.contenttree import ObjPathSourceBinder
+from plone.supermodel.model import Schema
+from plone.autoform.interfaces import IFormFieldProvider
+from plone.supermodel.directives import fieldset
 from plone.namedfile.field import NamedBlobImage
 from plone.portlets.interfaces import IPortletDataProvider
 
@@ -10,14 +11,25 @@ from zope.interface import alsoProvides, Interface
 
 from z3c.relationfield.schema import RelationChoice, RelationList
 
+# GOOD
+import pkg_resources
+
+try:
+    pkg_resources.get_distribution('plone.app.widgets')
+except pkg_resources.DistributionNotFound:
+    from plone.formwidget.contenttree import ObjPathSourceBinder
+    HAS_WIDGETS = False
+else:
+    HAS_WIDGETS = True
+
 
 class ICarouselItem(Interface):
     """ Marker inferface for item that it can be considered a carousel item """
 
 
-class ICarouselItemBehavior(form.Schema, ICarouselItem):
+class ICarouselItemBehavior(Schema, ICarouselItem):
 
-    form.fieldset(
+    fieldset(
         'carousel',
         label=_('fieldset_carousel', default=u'Carousel'),
         fields=(
@@ -51,21 +63,40 @@ class ICarouselItemBehavior(form.Schema, ICarouselItem):
         required=False
     )
 
-    carousel_background_link = RelationChoice(
-        title=_(u"Carousel background link"),
-        description=_(u"If selected this link will be used "
-                      u"from background in the carousel"),
-        required=False,
-        source=ObjPathSourceBinder(portal_type=['Image']),
-    )
+    if HAS_WIDGETS:
+        carousel_background_link = RelationChoice(
+            title=_(u"Carousel background link"),
+            description=_(u"If selected this link will be used "
+                          u"from background in the carousel"),
+            required=False,
+            vocabulary='plone.app.vocabularies.Catalog'
+        )
 
-    carousel_link = RelationChoice(
-        title=_(u"Carousel link"),
-        description=_(u"If selected this link will be used from the carousel "
-                      u"item, otherwise a link to this object is used"),
-        required=False,
-        source=ObjPathSourceBinder(),
-    )
+        carousel_link = RelationChoice(
+            title=_(u"Carousel link"),
+            description=_(
+                u"If selected this link will be used from the carousel "
+                u"item, otherwise a link to this object is used"),
+            required=False,
+            vocabulary='plone.app.vocabularies.Catalog'
+        )
+    else:
+        carousel_background_link = RelationChoice(
+            title=_(u"Carousel background link"),
+            description=_(u"If selected this link will be used "
+                          u"from background in the carousel"),
+            required=False,
+            source=ObjPathSourceBinder(portal_type=['Image']),
+        )
+
+        carousel_link = RelationChoice(
+            title=_(u"Carousel link"),
+            description=_(
+                u"If selected this link will be used from the carousel "
+                u"item, otherwise a link to this object is used"),
+            required=False,
+            source=ObjPathSourceBinder(),
+        )
 
     carousel_extlink = schema.URI(
         title=_(u"Carousel external link"),
@@ -80,7 +111,7 @@ class ICarouselItemBehavior(form.Schema, ICarouselItem):
         required=False
     )
 
-alsoProvides(ICarouselItemBehavior, form.IFormFieldProvider)
+alsoProvides(ICarouselItemBehavior, IFormFieldProvider)
 
 
 class ICarouselPortlet(IPortletDataProvider):
@@ -88,27 +119,52 @@ class ICarouselPortlet(IPortletDataProvider):
         title=_(u"Portlet header"),
     )
 
-    collection_reference = RelationChoice(
-        title=_(u"Collection reference"),
-        description=_(u"Select the collection that should be used to fetch "
-                      u"the elements that are shown in the carousel"),
-        required=False,
-        source=ObjPathSourceBinder(portal_type=['Collection',
-                                                'Topic']),
-    )
-
-    references = RelationList(
-        title=_(u"References to elements"),
-        description=_(u"If no collection is selected the following elements "
-                      u"will be displayed in the carousel"),
-        value_type=RelationChoice(
+    if HAS_WIDGETS:
+        collection_reference = RelationChoice(
+            title=_(u"Collection reference"),
+            description=_(
+                u"Select the collection that should be used to fetch "
+                u"the elements that are shown in the carousel"),
             required=False,
-            source=ObjPathSourceBinder(
-                object_provides=ICarouselItem.__identifier__
+            vocabulary='plone.app.vocabularies.Catalog'
+        )
+
+        references = RelationList(
+            title=_(u"References to elements"),
+            description=_(
+                u"If no collection is selected the following elements "
+                u"will be displayed in the carousel"),
+            value_type=RelationChoice(
+                required=False,
+                vocabulary='plone.app.vocabularies.Catalog'
             ),
-        ),
-        required=False
-    )
+            required=False
+        )
+
+    else:
+        collection_reference = RelationChoice(
+            title=_(u"Collection reference"),
+            description=_(
+                u"Select the collection that should be used to fetch "
+                u"the elements that are shown in the carousel"),
+            required=False,
+            source=ObjPathSourceBinder(portal_type=['Collection',
+                                                    'Topic']),
+        )
+
+        references = RelationList(
+            title=_(u"References to elements"),
+            description=_(
+                u"If no collection is selected the following elements "
+                u"will be displayed in the carousel"),
+            value_type=RelationChoice(
+                required=False,
+                source=ObjPathSourceBinder(
+                    object_provides=ICarouselItem.__identifier__
+                ),
+            ),
+            required=False
+        )
 
     limit = schema.Int(
         title=_(u"Number of elements to be shown in the carousel"),

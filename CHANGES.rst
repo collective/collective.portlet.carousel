@@ -13,6 +13,9 @@ Features:
 - add option to set timeout in portlet.
   [tmog]
 
+- add new widgets from plone.app.widgets
+  [datakurre]
+
 Fixes:
 
 - only do rotation if we have more

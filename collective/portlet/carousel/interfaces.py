@@ -69,6 +69,7 @@ class ICarouselItemBehavior(Schema, ICarouselItem):
             description=_(u"If selected this link will be used "
                           u"from background in the carousel"),
             required=False,
+            default=u"",
             vocabulary='plone.app.vocabularies.Catalog'
         )
 
@@ -78,6 +79,7 @@ class ICarouselItemBehavior(Schema, ICarouselItem):
                 u"If selected this link will be used from the carousel "
                 u"item, otherwise a link to this object is used"),
             required=False,
+            default=u"",
             vocabulary='plone.app.vocabularies.Catalog'
         )
     else:
@@ -86,6 +88,7 @@ class ICarouselItemBehavior(Schema, ICarouselItem):
             description=_(u"If selected this link will be used "
                           u"from background in the carousel"),
             required=False,
+            default=u"",
             source=ObjPathSourceBinder(portal_type=['Image']),
         )
 
@@ -95,6 +98,7 @@ class ICarouselItemBehavior(Schema, ICarouselItem):
                 u"If selected this link will be used from the carousel "
                 u"item, otherwise a link to this object is used"),
             required=False,
+            default=u"",
             source=ObjPathSourceBinder(),
         )
 

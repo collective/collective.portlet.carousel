@@ -18,6 +18,10 @@ Features:
 
 Fixes:
 
+- use empty string as default for relation choices fixing an
+  issue with the form library for non-required fields.
+  [malthe]
+
 - only do rotation if we have more
   than one item
   [tmog]

@@ -11,6 +11,10 @@ Fixes:
 
 - nothing yet
 
+1.1.1 (27-11-2017)
+
+- Added MANIFEST to include CHANGES.rst
+
 1.1 (22-11-2017)
 ----------------
 

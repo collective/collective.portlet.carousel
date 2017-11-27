@@ -4,7 +4,7 @@ import sys, os
 def read(*pathnames):
     return open(os.path.join(os.path.dirname(__file__), *pathnames)).read()
 
-version = '1.1'
+version = '1.1.1'
 
 setup(name='collective.portlet.carousel',
       version=version,
@@ -22,7 +22,7 @@ setup(name='collective.portlet.carousel',
       packages=find_packages(exclude=['ez_setup', 'examples', 'tests']),
       namespace_packages = ['collective', 'collective.portlet'],
       include_package_data=True,
-      zip_safe=True,
+      zip_safe=False,
       install_requires=[
           'setuptools',
           'collective.panels',

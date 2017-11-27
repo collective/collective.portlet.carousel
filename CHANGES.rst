@@ -2,6 +2,7 @@ Changelog
 =========
 
 1.2 (UNRELEASED)
+----------------
 
 Features:
 
@@ -11,7 +12,8 @@ Fixes:
 
 - nothing yet
 
-1.1.1 (27-11-2017)
+1.1.2 (27-11-2017)
+------------------
 
 - Added MANIFEST to include CHANGES.rst
 

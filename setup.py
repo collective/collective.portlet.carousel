@@ -4,7 +4,7 @@ import sys, os
 def read(*pathnames):
     return open(os.path.join(os.path.dirname(__file__), *pathnames)).read()
 
-version = '1.1.1'
+version = '1.1.2'
 
 setup(name='collective.portlet.carousel',
       version=version,

@@ -1,15 +1,46 @@
-
-from interfaces import ICarouselPortlet
-from portlet import CarouselPortletAssignment
+# -*- coding: utf-8 -*-
 from i18n import MessageFactory as _
-
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-
+from interfaces import ICarouselPortlet
 from plone.app.portlets.portlets import base
-from plone.app.portlets.browser import z3cformhelper
+from plone.autoform.form import AutoExtensibleForm
 from plone.memoize.view import memoize
+from portlet import CarouselPortletAssignment
+from Products.CMFPlone.utils import getFSVersionTuple
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from collective.portlet.carousel.interfaces import ICarouselItem
 
-from z3c.form import field
+import logging
+
+
+logger = logging.getLogger('collective.portlet.carousel')
+WIDGETS_1X = False
+PLONE5 = getFSVersionTuple()[0] >= 5
+
+if PLONE5:
+    base_AddForm = base.AddForm
+    base_EditForm = base.EditForm
+else:
+    # PLONE 4 Support:
+    # Either Plone 4 plus compatible plone.app.widgets, or Plone 4.x without:
+    from plone.app.portlets.browser import z3cformhelper
+    from z3c.form import field
+    try:
+        class base_AddForm(AutoExtensibleForm, z3cformhelper.AddForm):
+            pass
+
+        class base_EditForm(AutoExtensibleForm, z3cformhelper.EditForm):
+            pass
+
+        WIDGETS_1X = True
+    except ImportError:
+        WIDGETS_1X = False
+        base_AddForm = z3cformhelper.AddForm
+        base_EditForm = z3cformhelper.EditForm
+
+
+USE_AUTOFORM = PLONE5 or WIDGETS_1X
+
+
 
 script = """
 jQuery(function($){
@@ -61,7 +92,7 @@ class CarouselPortletRenderer(base.Renderer):
 
     @property
     def title(self):
-        return self.data.title
+        return self.data.header
 
     @property
     def available(self):
@@ -90,10 +121,16 @@ class CarouselPortletRenderer(base.Renderer):
             collection = self.data.collection_reference.to_object
 
         if collection:
-            resf = hasattr(collection, 'results') and \
-                collection.results or collection.queryCatalog
-            for brain in resf():
-                items.append(brain.getObject())
+            if collection.portal_type == 'Folder':
+                listing = collection.restrictedTraverse('@@folderListing', None)
+                brains = tuple(listing({'object_provides': ICarouselItem.__identifier__}))
+                for brain in brains:
+                    items.append(brain.getObject())
+            else:
+                resf = hasattr(collection, 'results') and \
+                    collection.results or collection.queryCatalog
+                for brain in resf():
+                    items.append(brain.getObject())
         else:
             references = self.data.references
             for reference in references:
@@ -109,14 +146,22 @@ class CarouselPortletRenderer(base.Renderer):
                              timeout=self.timeout)
 
 
-class CarouselPortletAddForm(z3cformhelper.AddForm):
-    fields = field.Fields(ICarouselPortlet)
+class CarouselPortletAddForm(base_AddForm):
+    if USE_AUTOFORM:
+        schema = ICarouselPortlet
+    else:
+        fields = field.Fields(ICarouselPortlet)
+
     label = _(u"Add carousel portlet")
 
     def create(self, data):
         return CarouselPortletAssignment(**data)
 
 
-class CarouselPortletEditForm(z3cformhelper.EditForm):
-    fields = field.Fields(ICarouselPortlet)
+class CarouselPortletEditForm(base_EditForm):
+    if USE_AUTOFORM:
+        schema = ICarouselPortlet
+    else:
+        fields = field.Fields(ICarouselPortlet)
+
     label = _(u"Edit carousel portlet")

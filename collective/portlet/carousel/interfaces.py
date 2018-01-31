@@ -1,18 +1,24 @@
 from i18n import MessageFactory as _
-
-from plone.supermodel.model import Schema
 from plone.autoform.interfaces import IFormFieldProvider
-from plone.supermodel.directives import fieldset
 from plone.namedfile.field import NamedBlobImage
 from plone.portlets.interfaces import IPortletDataProvider
-
+from plone.supermodel.directives import fieldset
+from plone.supermodel.model import Schema
+from z3c.relationfield.schema import RelationChoice
+from z3c.relationfield.schema import RelationList
 from zope import schema
-from zope.interface import alsoProvides, Interface
-
-from z3c.relationfield.schema import RelationChoice, RelationList
-
-# GOOD
+from zope.interface import alsoProvides
+from zope.interface import Interface
+from zope.publisher.interfaces.browser import IDefaultBrowserLayer
+from Products.CMFPlone.utils import getFSVersionTuple
 import pkg_resources
+
+
+PLONE5 = getFSVersionTuple()[0] >= 5
+
+if PLONE5:
+    from plone.autoform import directives as form
+    from plone.app.z3cform.widget import RelatedItemsFieldWidget
 
 try:
     pkg_resources.get_distribution('plone.app.widgets')
@@ -21,6 +27,10 @@ except pkg_resources.DistributionNotFound:
     HAS_WIDGETS = False
 else:
     HAS_WIDGETS = True
+
+
+class ICollectivePortletCarouselLayer(IDefaultBrowserLayer):
+    """Marker interface that defines a browser layer."""
 
 
 class ICarouselItem(Interface):
@@ -71,6 +81,15 @@ class ICarouselItemBehavior(Schema, ICarouselItem):
             required=False,
             vocabulary='plone.app.vocabularies.Catalog'
         )
+        if PLONE5:
+            form.widget(
+                'carousel_background_link',
+                RelatedItemsFieldWidget,
+                vocabulary='plone.app.vocabularies.Catalog',
+                pattern_options={
+                    'selectableTypes': ['Image']
+                }
+            )
 
         carousel_link = RelationChoice(
             title=_(u"Carousel link"),
@@ -80,6 +99,12 @@ class ICarouselItemBehavior(Schema, ICarouselItem):
             required=False,
             vocabulary='plone.app.vocabularies.Catalog'
         )
+        if PLONE5:
+            form.widget(
+                'carousel_link',
+                RelatedItemsFieldWidget,
+                vocabulary='plone.app.vocabularies.Catalog'
+            )
     else:
         carousel_background_link = RelationChoice(
             title=_(u"Carousel background link"),
@@ -115,7 +140,7 @@ alsoProvides(ICarouselItemBehavior, IFormFieldProvider)
 
 
 class ICarouselPortlet(IPortletDataProvider):
-    title = schema.TextLine(
+    header = schema.TextLine(
         title=_(u"Portlet header"),
     )
 
@@ -123,11 +148,20 @@ class ICarouselPortlet(IPortletDataProvider):
         collection_reference = RelationChoice(
             title=_(u"Collection reference"),
             description=_(
-                u"Select the collection that should be used to fetch "
+                u"Select the collection or folder that should be used to fetch "
                 u"the elements that are shown in the carousel"),
             required=False,
             vocabulary='plone.app.vocabularies.Catalog'
         )
+        if PLONE5:
+            form.widget(
+                'collection_reference',
+                RelatedItemsFieldWidget,
+                vocabulary='plone.app.vocabularies.Catalog',
+                pattern_options={
+                    'selectableTypes': ['Collection', 'Folder']
+                }
+            )
 
         references = RelationList(
             title=_(u"References to elements"),
@@ -140,6 +174,15 @@ class ICarouselPortlet(IPortletDataProvider):
             ),
             required=False
         )
+        if PLONE5:
+            form.widget(
+                'references',
+                RelatedItemsFieldWidget,
+                vocabulary='plone.app.vocabularies.Catalog',
+                pattern_options={
+                    'object_provides': ICarouselItem.__identifier__
+                }
+            )
 
     else:
         collection_reference = RelationChoice(

@@ -1,16 +1,14 @@
 Changelog
 =========
 
-1.2 (UNRELEASED)
+1.1.3 (UNRELEASED)
 ----------------
-
-Features:
-
-- nothing yet
 
 Fixes:
 
-- nothing yet
+- Fix packaging
+  [sunew]
+
 
 1.1.2 (27-11-2017)
 ------------------
